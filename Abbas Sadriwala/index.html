@@ -1,140 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Drag and Drop Example</title>
-  <style>
-    body {
-      background-color: #f0f0f0;
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: #ffffff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .item {
-      width: 100px;
-      height: 100px;
-      border: 1px solid #ccc;
-      margin-bottom: 10px;
-      cursor: move;
-    }
-
-    .item.dragging {
-      opacity: 0.5;
-    }
-
-    .success-message {
-      color: green;
-      margin-top: 10px;
-    }
-
-    #container2 {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      margin-top: 30px;
-    }
-
-    #container2 p {
-      margin: 0;
-    }
-
-    button {
-      display: block;
-      margin: 20px auto;
-      cursor: pointer;
-      background-color: greenyellow;
-    }
-
-    @media only screen and (max-width: 600px) {
-      /* Responsive design for small screens */
-      .container {
-        flex-direction: column;
-      }
-
-      .item {
-        width: 100%; /* Take full width on small screens */
-        height: auto; /* Adjust height as needed */
-      }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Drag & Drop elements from one position to another by using HTML CSS & JavaScript. Including drag-and-drop functionality with some animations." />
+  <meta name="keywords" content="drag drop html,drag drop html css javascript,drag drop javascript,drag drop js,draggable HTML and CSS,HTML, CSS, JavaScript " />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drag & Drop Interface</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../custom-styles.css" />
+  <script src="../custom-scripts.js" defer></script>
 </head>
 <body>
-  <div class="container">
-    <div id="container1">
-      <div class="item" draggable="true"><img src="https://example.com/image1.jpg" alt="Image 1"></div>
-      <div class="item" draggable="true"><img src="https://example.com/image2.jpg" alt="Image 2"></div>
-      <div class="item" draggable="true"><img src="https://example.com/image3.jpg" alt="Image 3"></div>
+    <h1>Drag N Drop</h1>
+  <section class="container">
+    <div class="box">
+      <div class="image" draggable="true"></div>
     </div>
-    <div id="container2" ondrop="drop(event)" ondragover="dragOver(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
-      <p><strong>Drop items here</strong></p>
-    </div>
+    <div class="box"></div>
+  </section>
+  <div class="success-message">
+    <p>Item dropped successfully!</p>
   </div>
-  <button onclick="resetContainers()">Reset</button>
-  <div class="success-message" id="successMessage"></div>
-
-  <script>
-    // Global variables
-    let draggedItem = null;
-    const container1 = document.getElementById('container1');
-    const container2 = document.getElementById('container2');
-    const successMessage = document.getElementById('successMessage');
-
-    // Event listeners for drag and drop events
-    container1.addEventListener('dragstart', dragStart);
-
-    // Drag functions
-    function dragStart(event) {
-      event.dataTransfer.effectAllowed = 'move';
-      event.dataTransfer.setData('text/plain', event.target.innerHTML);
-      draggedItem = event.target;
-      draggedItem.classList.add('dragging');
-    }
-
-    function dragOver(event) {
-      event.preventDefault();
-      event.dataTransfer.dropEffect = 'move';
-    }
-
-    function dragEnter(event) {
-      event.preventDefault();
-      container2.classList.add('highlight');
-    }
-
-    function dragLeave() {
-      container2.classList.remove('highlight');
-    }
-
-    function drop(event) {
-      event.preventDefault();
-      const data = event.dataTransfer.getData('text/plain');
-      event.target.innerHTML = data;
-      draggedItem.parentNode.removeChild(draggedItem);
-      draggedItem.classList.remove('dragging');
-      container2.classList.remove('highlight');
-      successMessage.innerHTML = 'Item dropped successfully!';
-    }
-
-    // Reset function
-    function resetContainers() {
-      container1.innerHTML = `
-        <div class="item" draggable="true"><img src="path/to/image1.jpg" alt="Image 1"></div>
-        <div class="item" draggable="true"><img src="path/to/image2.jpg" alt="Image 2"></div>
-        <div class="item" draggable="true"><img src="path/to/image3.jpg" alt="Image 3"></div>
-      `;
-      container2.innerHTML = '<p><strong>Drop items here</strong></p>';
-      successMessage.innerHTML = '';
-    }
-  </script>
+  <div class="reset-btn">
+    <button onclick="resetContainers()">Reset</button>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
