@@ -1,2 +1,3 @@
 # Front-end-Assignment
 Drag and Drop interface with containers
+This code creates a drag and drop interface with two containers. The first container contains three draggable items represented by images, while the second container is the drop target. JavaScript code handles the drag and drop functionality, allowing users to drag items from the first container and drop them into the second container. There's also a reset button and a success message displayed when an item is successfully dropped.
